@@ -1,0 +1,19 @@
+#!/bin/zsh
+#
+# usage: setaws <profile-name>
+
+if [ "$#" -eq 0 ]; then
+    echo "No parameters were passed."
+    exit 1
+fi
+
+filepath="$HOME/.aws/$1"
+credentials="$HOME/.aws/credentials"
+
+if [ ! -f $filepath ]; then
+    echo "File $filepath does not exist."
+    exit 1
+fi
+
+rm -f $credentials
+cp $filepath $credentials
